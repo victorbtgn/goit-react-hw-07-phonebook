@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import toaster from 'toasted-notes';
 import 'toasted-notes/src/styles.css';
-import phonebookAction from '../../redux/phonebook-action';
+import contactsOperations from '../../redux/contacts-operations';
 
 class ContactForm extends Component {
   state = {
@@ -58,25 +58,13 @@ class ContactForm extends Component {
         <label>
           Name *
           <br />
-          <input
-            type="text"
-            name="name"
-            value={name}
-            className="input"
-            onChange={this.inputChange}
-          />
+          <input type="text" name="name" value={name} className="input" onChange={this.inputChange} />
         </label>
         <br />
         <label>
           Phone number *
           <br />
-          <input
-            type="number"
-            name="number"
-            value={number}
-            className="input"
-            onChange={this.inputChange}
-          />
+          <input type="number" name="number" value={number} className="input" onChange={this.inputChange} />
         </label>
         <br />
         <button className="btn" type="submit">
@@ -92,8 +80,7 @@ const mapStateToProps = ({ contacts }) => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  onSubmit: contact =>
-    dispatch(phonebookAction.addContact(contact.name, contact.number)),
+  onSubmit: contact => dispatch(contactsOperations.addContact(contact.name, contact.number)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(ContactForm);
