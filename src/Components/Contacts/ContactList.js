@@ -10,11 +10,15 @@ class ContactList extends Component {
   }
   render() {
     return (
-      <ul className="list">
-        {this.props.contacts.map(({ id, name, number }) => (
-          <ContactItem key={id} id={id} name={name} number={number} onDelete={() => this.props.onDelete(id)} />
-        ))}
-      </ul>
+      <>
+        <ul className="list">
+          {this.props.contacts.map(({ id, name, number }) => (
+            <ContactItem key={id} id={id} name={name} number={number} onDelete={() => this.props.onDelete(id)} />
+          ))}
+        </ul>
+
+        {this.props.error && <h2>The server is temporarily unavailable, try again later.</h2>}
+      </>
     );
   }
 }
@@ -32,6 +36,7 @@ const getVisibleContacts = (allContacts, filter) => {
 
 const mapStateToProps = ({ contacts }) => ({
   contacts: getVisibleContacts(contacts.items, contacts.filter),
+  error: contacts.error,
 });
 
 const mapDispatchToProps = dispatch => ({
