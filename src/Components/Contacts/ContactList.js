@@ -17,7 +17,12 @@ class ContactList extends Component {
           ))}
         </ul>
 
-        {this.props.error && <h2>The server is temporarily unavailable, try again later.</h2>}
+        {this.props.error && (
+          <>
+            <p className="errorMessage">{this.props.error}</p>
+            <p className="errorMessage">The server is temporarily unavailable, try again later.</p>
+          </>
+        )}
       </>
     );
   }
