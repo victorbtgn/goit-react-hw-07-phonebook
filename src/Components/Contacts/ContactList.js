@@ -22,13 +22,6 @@ class ContactList extends Component {
             <ContactItem key={id} id={id} name={name} number={number} onDelete={() => this.props.onDelete(id)} />
           ))}
         </ul>
-
-        {this.props.error && (
-          <>
-            <p className="errorMessage">{this.props.error}</p>
-            <p className="errorMessage">The server is temporarily unavailable, try again later.</p>
-          </>
-        )}
       </>
     );
   }
@@ -41,7 +34,6 @@ ContactList.propTypes = {
 
 const mapStateToProps = state => ({
   contacts: contactSelectors.getVisibleContacts(state),
-  error: contactSelectors.getError(state),
   isLoading: contactSelectors.getLoading(state),
 });
 

@@ -1,24 +1,41 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import Container from './Common/Container';
 import ContactForm from './Components/ContactForm/ContactForm';
 import Filter from './Components/Filter/Filter';
 import ContactList from './Components/Contacts/ContactList';
 import Section from './Common/Section';
+import contactSelectors from './redux/contacts-selectors';
 import 'toasted-notes/src/styles.css';
 import './App.css';
 
-const App = () => (
+const App = ({ error }) => (
   <Container>
-    <Section title="Phonebook">
-      <ContactForm />
-    </Section>
+    {error && (
+      <>
+        <h1 className="errorMessage">{error}</h1>
+        <p className="errorMessage">The server is temporarily unavailable, try again later.</p>
+      </>
+    )}
 
-    <Section title="Contacts">
-      <Filter />
+    {!error && (
+      <>
+        <Section title="Phonebook">
+          <ContactForm />
+        </Section>
 
-      <ContactList />
-    </Section>
+        <Section title="Contacts">
+          <Filter />
+
+          <ContactList />
+        </Section>
+      </>
+    )}
   </Container>
 );
 
-export default App;
+const mapStateToProps = state => ({
+  error: contactSelectors.getError(state),
+});
+
+export default connect(mapStateToProps)(App);
