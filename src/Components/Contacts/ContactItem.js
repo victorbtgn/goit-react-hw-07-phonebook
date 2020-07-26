@@ -22,7 +22,7 @@ const ContactItem = ({ id, name, number, onDelete }) => (
 ContactItem.propTypes = {
   id: PropTypes.number.isRequired,
   name: PropTypes.string.isRequired,
-  number: PropTypes.string.isRequired,
+  number: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
   onDelete: PropTypes.func.isRequired,
 };
 

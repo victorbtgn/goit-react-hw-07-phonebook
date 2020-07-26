@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 const Section = ({ title, children }) => (
   <>
-    {title && <h2 className="feedback-title">{title}</h2>}
+    {title && <h2 className="title">{title}</h2>}
 
     <section className="section">{children}</section>
   </>
