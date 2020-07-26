@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import toaster from 'toasted-notes';
 import 'toasted-notes/src/styles.css';
 import contactsOperations from '../../redux/contacts-operations';
+import contactSelectors from '../../redux/contacts-selectors';
 
 class ContactForm extends Component {
   state = {
@@ -75,8 +76,8 @@ class ContactForm extends Component {
   }
 }
 
-const mapStateToProps = ({ contacts }) => ({
-  items: contacts.items,
+const mapStateToProps = state => ({
+  items: contactSelectors.getAllContacts(state),
 });
 
 const mapDispatchToProps = dispatch => ({

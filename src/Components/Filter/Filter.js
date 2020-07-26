@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { changeFilter } from '../../redux/contacts-action';
+import contactSelectors from '../../redux/contacts-selectors';
 import PropTypes from 'prop-types';
 
 const Filter = ({ filter, contactsLength, onChange }) => (
@@ -21,9 +22,9 @@ Filter.propTypes = {
   onChange: PropTypes.func.isRequired,
 };
 
-const mapStateToProps = ({ contacts }) => ({
-  filter: contacts.filter,
-  contactsLength: contacts.items.length,
+const mapStateToProps = state => ({
+  filter: contactSelectors.getFilter(state),
+  contactsLength: contactSelectors.getContactsLength(state),
 });
 
 const mapDispatchToProps = dispatch => ({
