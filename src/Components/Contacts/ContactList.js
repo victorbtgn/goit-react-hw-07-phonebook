@@ -5,9 +5,6 @@ import contactsOperations from '../../redux/contacts-operations';
 import contactSelectors from '../../redux/contacts-selectors';
 import PropTypes from 'prop-types';
 
-import Loader from 'react-loader-spinner';
-import 'react-loader-spinner/dist/loader/css/react-spinner-loader.css';
-
 class ContactList extends Component {
   componentDidMount() {
     this.props.fetchContacts();
@@ -15,14 +12,11 @@ class ContactList extends Component {
 
   render() {
     return (
-      <>
-        {this.props.isLoading && <Loader type="ThreeDots" color="#4f5252" width={100} className="loader" />}
-        <ul className="list">
-          {this.props.contacts.map(({ id, name, number }) => (
-            <ContactItem key={id} id={id} name={name} number={number} onDelete={() => this.props.onDelete(id)} />
-          ))}
-        </ul>
-      </>
+      <ul className="list">
+        {this.props.contacts.map(({ id, name, number }) => (
+          <ContactItem key={id} id={id} name={name} number={number} onDelete={() => this.props.onDelete(id)} />
+        ))}
+      </ul>
     );
   }
 }
@@ -34,7 +28,6 @@ ContactList.propTypes = {
 
 const mapStateToProps = state => ({
   contacts: contactSelectors.getVisibleContacts(state),
-  isLoading: contactSelectors.getLoading(state),
 });
 
 const mapDispatchToProps = dispatch => ({

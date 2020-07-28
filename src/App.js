@@ -9,7 +9,10 @@ import contactSelectors from './redux/contacts-selectors';
 import 'toasted-notes/src/styles.css';
 import './App.css';
 
-const App = ({ error }) => (
+import Loader from 'react-loader-spinner';
+import 'react-loader-spinner/dist/loader/css/react-spinner-loader.css';
+
+const App = ({ error, isLoading }) => (
   <Container>
     {error && (
       <>
@@ -25,6 +28,7 @@ const App = ({ error }) => (
         </Section>
 
         <Section title="Contacts">
+          {isLoading && <Loader type="ThreeDots" color="#4f5252" width={100} className="loader" />}
           <Filter />
 
           <ContactList />
@@ -36,6 +40,7 @@ const App = ({ error }) => (
 
 const mapStateToProps = state => ({
   error: contactSelectors.getError(state),
+  isLoading: contactSelectors.getLoading(state),
 });
 
 export default connect(mapStateToProps)(App);

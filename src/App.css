@@ -3,6 +3,7 @@
   padding: 30px;
   background: linear-gradient(to right, #daf7f856, #63f8f844);
   border-radius: 15px;
+  position: relative;
 }
 
 .section {
@@ -108,6 +109,6 @@ input::-webkit-inner-spin-button {
 
 .loader {
   position: absolute;
-  top: 43%;
-  left: 25%;
+  top: 220px;
+  left: 185px;
 }
